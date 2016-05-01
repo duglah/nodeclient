@@ -1,0 +1,35 @@
+{
+	"version": "0.1.0",
+	"command": "gulp",
+	"isShellCommand": true,
+	"tasks": [
+		{
+			"taskName": "default",
+			// Make this the default build command.
+			"isBuildCommand": true,
+			// Show the output window only if unrecognized errors occur.
+			"showOutput": "silent",
+			// Use the standard less compilation problem matcher.
+			"problemMatcher": ["$tsc","$lessCompile"]
+		},
+        {
+			"taskName": "build",
+			// Show the output window only if unrecognized errors occur.
+			"showOutput": "silent",
+			// Use the standard less compilation problem matcher.
+			"problemMatcher": ["$tsc","$lessCompile"]
+		},
+        {
+			"taskName": "watch",
+			// Show the output window only if unrecognized errors occur.
+			"showOutput": "silent",
+			// Use the standard less compilation problem matcher.
+			"problemMatcher": ["$tsc","$lessCompile"],
+            "isWatching": true
+		},
+        {
+            "taskName": "clean",            
+            "showOutput": "silent"
+        }
+	]
+}
