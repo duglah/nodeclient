@@ -1,17 +1,18 @@
-export class IoC {
-    private _singletonRegistrations: { [typeName: string]: () => any; } = {};
-    private _singletons: { [typeName: string]: any; } = {};
-
-    public registerSingleton<InterfaceType>(interfaceType: string, ctor: () => InterfaceType): void {
+"use strict";
+var IoC = (function () {
+    function IoC() {
+        this._singletonRegistrations = {};
+        this._singletons = {};
+    }
+    IoC.prototype.registerSingleton = function (interfaceType, ctor) {
         if (!this._singletonRegistrations[interfaceType] && !this._singletons[interfaceType]) {
             this._singletonRegistrations[interfaceType] = ctor;
         }
         else {
             throw new Error("interface " + interfaceType + " already registered as singleton");
         }
-    }
-
-    public resolve<T>(interfaceType: string): T {
+    };
+    IoC.prototype.resolve = function (interfaceType) {
         if (!this._singletons[interfaceType] && !this._singletonRegistrations[interfaceType]) {
             throw new Error("nothing registered for " + interfaceType);
         }
@@ -22,18 +23,20 @@ export class IoC {
             }
             return this._singletons[interfaceType];
         }
-    }
-
-    public adapt(ioc:IoC): void {
-        for(let i in ioc._singletonRegistrations){
-            this.registerSingleton(i, ioc._singletonRegistrations[i])
+    };
+    IoC.prototype.adapt = function (ioc) {
+        for (var i in ioc._singletonRegistrations) {
+            this.registerSingleton(i, ioc._singletonRegistrations[i]);
         }
-        for(let i in ioc._singletons){
-            this.registerSingleton(i, ioc._singletons[i])
+        for (var i in ioc._singletons) {
+            this.registerSingleton(i, ioc._singletons[i]);
         }
-    }
-}
-
+    };
+    return IoC;
+}());
+exports.IoC = IoC;
 var ioc = new IoC();
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = ioc;
 
-export default ioc;
+//# sourceMappingURL=ioc.js.map

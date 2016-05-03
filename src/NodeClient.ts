@@ -14,7 +14,7 @@ export default class NodeClient implements INodeClient {
     port: string = "8085";
     host: string = "";
     mainNodePort: string = "8080";
-    onRecieveHandler: (answer: Answer, param?: any) => void;
+    onRecieveHandler: (answer: Answer, param?: string) => void;
     defaultTimeout: number = 1000 * 30; //1000 * 60 * 5; //5 minutes
 
     private interval: any;
@@ -125,7 +125,7 @@ export default class NodeClient implements INodeClient {
         });
     }
 
-    public onReceive(handler: (answer: Answer, param?: any) => void) {
+    public onReceive(handler: (answer: Answer, param?: string) => void) {
         if (handler)
             this.onRecieveHandler = handler;
         else

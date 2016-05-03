@@ -23,7 +23,7 @@ export class Answer {
         this.response = response;
     }
 
-    public send(data: any): void {
+    public send(data?: any): void {
         this.response.json({ "result": data });
     }
 }
