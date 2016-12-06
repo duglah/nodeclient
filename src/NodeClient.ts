@@ -115,7 +115,7 @@ export default class NodeClient implements INodeClient {
         request(options, (error, response, body) => {
             if (!error && response.statusCode == 200) {
                 console.log("Register was successfull");
-                this.interval = setInterval(this.ping, this.defaultTimeout);
+                this.interval = setInterval(()=>this.ping(), this.defaultTimeout);
                 callback && callback(null, true);
             }
             else {
